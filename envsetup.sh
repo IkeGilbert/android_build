@@ -555,6 +555,45 @@ function add_lunch_combo()
     done
     LUNCH_MENU_CHOICES=(${LUNCH_MENU_CHOICES[@]} $new_combo)
 }
+{
+    local uname=$(uname)
+    echo
+
+    echo ""
+    tput setaf 1;
+    tput bold;
+echo "             ___    _        ______   _______  _______  _______               "
+echo "|\     /|   /   )  | \    /\/ ___  \ (  ____ )(  ___  )(       )              "
+echo "| )   ( |  / /) |  |  \  / /\/   \  \| (    )|| (   ) || () () |              "
+echo "| (___) | / (_) (_ |  (_/ /    ___) /| (____)|| |   | || || || |              "
+echo "|  ___  |(____   _)|   _ (    (___ ( |     __)| |   | || |(_)| |              "
+echo "| (   ) |     ) (  |  ( \ \       ) \| (\ (   | |   | || |   | |              "
+echo "| )   ( |     | |  |  /  \ \/\___/  /| ) \ \__| (___) || )   ( |              "
+echo "|/     \|     (_)  |_/    \/\______/ |/   \__/(_______)|/     \|              "
+echo "                                                                              "
+    tput sgr0;
+    echo ""
+    echo "                      Welcome to the device menu                      "
+    echo ""
+    tput bold;
+    echo "     Below are all the devices currently available to be H4K3D!     "
+    tput sgr0;
+    echo ""
+
+    local i=1
+    local choice
+    for choice in ${LUNCH_MENU_CHOICES[@]}
+    do
+        echo " $i. $choice "
+        i=$(($i+1))
+    done | column
+
+    if [ "z${GZOSP_DEVICES_ONLY}" != "z" ]; then
+       echo "... and don't forget the bacon!"
+    fi
+
+    echo
+}
 
 # add the default one here
 add_lunch_combo aosp_arm-eng
