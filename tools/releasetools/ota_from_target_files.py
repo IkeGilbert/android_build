@@ -840,6 +840,16 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   system_progress = 0.75
 
+  script.Print("**************************************************");
+  script.Print("                      __  __  __      ");
+  script.Print("         |__| |__||_/  _)|__)/  \|\/| ");
+  script.Print("         |  |    || \ __)| \ \__/|  | ");
+  script.Print("                                      ");
+  script.Print("                                                   ");
+  script.Print("              H4K3Rom Android Pie                        ");
+  script.Print("                                                   ");
+  script.Print("***************************************************");
+
   if OPTIONS.wipe_user_data:
     system_progress -= 0.1
   if HasVendorPartition(input_zip):
