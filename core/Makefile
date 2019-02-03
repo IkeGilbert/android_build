@@ -1475,6 +1475,9 @@ endef
 RECOVERYIMAGE_ID_FILE := $(PRODUCT_OUT)/recovery.id
 # $(1): output file
 define build-recoveryimage-target
+  @echo "Generating Changelog"
+  $(hide) ./vendor/lineage/build/tools/changelog
+  $(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(TARGET_PRODUCT)-Changelog.txt
   $(if $(filter true,$(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_SUPPORTS_VBOOT)), \
     $(hide) $(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) --output $(1).unsigned, \
     $(hide) $(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) --output $(1) --id > $(RECOVERYIMAGE_ID_FILE))
@@ -3171,8 +3174,27 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) \
 	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-.PHONY: otapackage
+.PHONY: otapackage H4K3ROM
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
+	@echo -e ${CL_RED}""${CL_RED}
+	@echo -e ${CL_RED}"Floyd Flivercod the III's customized H4K3ROM (GZOSP build)"${CL_RED}
+	@echo -e ${CL_RED}"Standard stuff is out of the way, now we..."${CL_RED}
+	@echo -e ${CL_RED}"H4CK the build..."${CL_RED}
+	@echo -e ${CL_RED}""${CL_RED}
+	@echo -e ${CL_RED}""${CL_RED}
+	@echo -e ${CL_RED}""${CL_RED}
+	@echo -e ${CL_RED}"             ___    _        ______   _______  _______  _______               "${CL_RED}
+	@echo -e ${CL_RED}"|\     /|   /   )  | \    /\/ ___  \ (  ____ )(  ___  )(       )              "${CL_RED}
+	@echo -e ${CL_RED}"| )   ( |  / /) |  |  \  / /\/   \  \| (    )|| (   ) || () () |              "${CL_RED}
+	@echo -e ${CL_RED}"| (___) | / (_) (_ |  (_/ /    ___) /| (____)|| |   | || || || |              "${CL_RED}
+	@echo -e ${CL_RED}"|  ___  |(____   _)|   _ (    (___ ( |     __)| |   | || |(_)| |              "${CL_RED}
+	@echo -e ${CL_RED}"| (   ) |     ) (  |  ( \ \       ) \| (\ (   | |   | || |   | |              "${CL_RED}
+	@echo -e ${CL_RED}"| )   ( |     | |  |  /  \ \/\___/  /| ) \ \__| (___) || )   ( |              "${CL_RED}
+	@echo -e ${CL_RED}"|/     \|     (_)  |_/    \/\______/ |/   \__/(_______)|/     \|              "${CL_RED}
+	@echo -e ${CL_RED}"                                                                              "${CL_RED}
+	@echo -e ${CL_RED}"                           LineageOS Base / Custom ROM "${CL_RED}
+	@echo -e ${CL_RED}"                Flash at your own risk... https://github.com/H4K3ROM      "${CL_RED}
+	@echo -e "Floyd says The chicken is in the pot, ROM 1/2 baked nicely ;): $(GZOSP_TARGET_PACKAGE)"
 
 endif    # build_ota_package
 
